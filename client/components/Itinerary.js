@@ -24,17 +24,17 @@ class Itinerary extends React.Component {
     console.log('Morning Array', morningArr)
     const afternoonArr = await fetchAfternoon();
     console.log('Afternoon Array', afternoonArr)
-    // const lunchArr = await fetchLunch();
-    // console.log('Lunch Array', lunchArr)
-    // const dinnerArr = await fetchDinner();
-    // console.log('Dinner Array', dinnerArr)
+    const lunchArr = await fetchLunch();
+    console.log('Lunch Array', lunchArr)
+    const dinnerArr = await fetchDinner();
+    console.log('Dinner Array', dinnerArr)
 
 
     this.setState({
       morning: morningArr,
-      lunch: [],
+      lunch: lunchArr,
       afternoon: afternoonArr,
-      dinner: []
+      dinner: dinnerArr
     })
   }
 
@@ -62,9 +62,11 @@ class Itinerary extends React.Component {
             <h1>Morning</h1>
               <h3>{this.state.morning[this.randomNum1()].name}</h3>
             <h1>Lunch</h1>
+            <h3>{this.state.lunch[this.randomNum2()].name}</h3>
             <h1>Afternoon</h1>
             <h3>{this.state.afternoon[this.randomNum3()].name}</h3>
             <h1>Dinner</h1>
+            <h3>{this.state.dinner[this.randomNum4()].name}</h3>
             </div>
          ) : <h1>Loading</h1>}
       </div>

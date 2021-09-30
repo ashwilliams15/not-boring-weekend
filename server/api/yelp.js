@@ -47,7 +47,7 @@ router.get('/afternoon', async (req, res, next) => {
 })
 
 //lunch call to yelp fusion api
-/*
+
 router.get('/lunch', async (req, res, next) => {
   try {
     const { data } = await axios.get(URL, {
@@ -56,7 +56,7 @@ router.get('/lunch', async (req, res, next) => {
       },
       params: {
         location: 'Salt Lake City',
-        categories: 'artmuseums',
+        categories: 'chinese',
         limit: 10,
         radius: 30000
       }
@@ -66,10 +66,10 @@ router.get('/lunch', async (req, res, next) => {
     console.log(err)
   }
 })
-*/
 
-//dinner activity call to yelp fusion api
- /*
+
+//dinner call to yelp fusion api
+
 router.get('/dinner', async (req, res, next) => {
   try {
     const { data } = await axios.get(URL, {
@@ -78,9 +78,10 @@ router.get('/dinner', async (req, res, next) => {
       },
       params: {
         location: 'Salt Lake City',
-        categories: 'artmuseums',
+        categories: 'newamerican',
         limit: 10,
-        radius: 30000
+        radius: 30000,
+        // attributes: 'reservation'
       }
     })
     res.json(data)
@@ -89,4 +90,4 @@ router.get('/dinner', async (req, res, next) => {
   }
 })
 
-*/
+
