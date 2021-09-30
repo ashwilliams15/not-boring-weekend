@@ -1,5 +1,6 @@
 import React from 'react';
-import { fetchBusiness } from '../store/yelp';
+import { fetchMorning, fetchAfternoon, fetchLunch, fetchDinner } from '../store/yelp';
+import { Grid, Card } from '@material-ui/core'
 
 
 class Itinerary extends React.Component {
@@ -19,11 +20,21 @@ class Itinerary extends React.Component {
 
   async componentDidMount() {
     //await call to thunk to make server request
-    const dataArr = await fetchBusiness();
-    console.log('itinerary', dataArr)
+    const morningArr = await fetchMorning();
+    console.log('Morning Array', morningArr)
+    const afternoonArr = await fetchAfternoon();
+    console.log('Afternoon Array', afternoonArr)
+    // const lunchArr = await fetchLunch();
+    // console.log('Lunch Array', lunchArr)
+    // const dinnerArr = await fetchDinner();
+    // console.log('Dinner Array', dinnerArr)
+
 
     this.setState({
-      morning: dataArr
+      morning: morningArr,
+      lunch: [],
+      afternoon: afternoonArr,
+      dinner: []
     })
   }
 
@@ -44,9 +55,6 @@ class Itinerary extends React.Component {
   }
 
   render() {
-    //will need loading screen if ?state? is empty
-    //this means the axios call and randomization is still running
-    console.log(this.state.morning)
     return (
       <div>
         {this.state.morning.length > 0 ? (
@@ -56,6 +64,7 @@ class Itinerary extends React.Component {
             <h1>Lunch</h1>
             <h1>Afternoon</h1>
             <h3>{this.state.afternoon[this.randomNum3()].name}</h3>
+            <h1>Dinner</h1>
             </div>
          ) : <h1>Loading</h1>}
       </div>
