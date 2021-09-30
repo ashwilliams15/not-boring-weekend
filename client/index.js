@@ -7,10 +7,10 @@ import store from './store'
 import App from './App'
 
 ReactDOM.render(
-  <Provider store={store}>
+  // <Provider store={store}>
     <Router history={history}>
       <App />
-    </Router>
-  </Provider>,
+    </Router>,
+  // </Provider>,
   document.getElementById('app')
 )

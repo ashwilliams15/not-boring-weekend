@@ -1,13 +1,31 @@
-import React, {Component, Fragment} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
-import { Login, Signup } from './components/AuthForm';
-import Home from './components/Home';
-import {me} from './store'
+// import React, {Component, Fragment} from 'react'
+// import {connect} from 'react-redux'
+// import { Login, Signup } from './components/AuthForm';
+// import {me} from './store'
 
-/**
- * COMPONENT
- */
+import React from 'react';
+import {withRouter, Route, Switch, Redirect} from 'react-router-dom';
+import Home from './components/Home';
+
+function Routes() {
+  return (
+    <Switch>
+      <Route path="/" component={Home} />
+    </Switch>
+  )
+}
+
+
+
+export default withRouter(Routes)
+
+
+
+
+
+
+//Old Route component
+/*
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
@@ -34,14 +52,13 @@ class Routes extends Component {
     )
   }
 }
+*/
 
-/**
- * CONTAINER
- */
+
+//If doing login stuff
+/*
 const mapState = state => {
   return {
-    // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
-    // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id
   }
 }
@@ -54,6 +71,5 @@ const mapDispatch = dispatch => {
   }
 }
 
-// The `withRouter` wrapper makes sure that updates are not blocked
-// when the url changes
 export default withRouter(connect(mapState, mapDispatch)(Routes))
+*/

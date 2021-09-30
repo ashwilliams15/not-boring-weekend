@@ -1,5 +1,6 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Noto Sans Display', sans-serif;
+  background-color: rgb(251, 240, 240);
 }
 
 a {
@@ -19,3 +20,18 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.home-container {
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+/* .home-content {
+
+} */
+
+
