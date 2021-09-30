@@ -6,11 +6,13 @@
 import React from 'react';
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom';
 import Home from './components/Home';
+import Itinerary from './components/Itinerary';
 
 function Routes() {
   return (
     <Switch>
-      <Route path="/" component={Home} />
+      <Route exact path='/' component={Home} />
+      <Route path='/itinerary' component={Itinerary} />
     </Switch>
   )
 }

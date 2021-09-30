@@ -1,8 +1,8 @@
 import React from 'react'
 import { Box, Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 export const Home = props => {
-  const { classes } = props;
 
   return (
     <div className='home-container'>
@@ -10,9 +10,11 @@ export const Home = props => {
       <h1>Sick of boring weekends? Let's plan your day off.</h1>
       <h3>Click the button below to generate your itinerary</h3>
       <Box pt={3}>
-      <Button variant='contained' color='secondary'>
-        Generate
-      </Button>
+        <Link to='/itinerary'>
+          <Button variant='contained' color='secondary'>
+            Generate
+          </Button>
+        </Link>
       </Box>
       </center>
     </div>
