@@ -1,6 +1,6 @@
 import React from 'react';
 import { fetchMorning, fetchAfternoon, fetchLunch, fetchDinner } from '../store/yelp';
-import { Grid, Card, CardContent, Typography, withStyles, CardMedia, ThemeProvider, createTheme, Box, Link } from '@material-ui/core'
+import { Grid, Card, CardContent, Typography, withStyles, CardMedia, ThemeProvider, createTheme, Box, Link, Button } from '@material-ui/core'
 
 const useStyles = () => ({
   grid: {
@@ -33,6 +33,9 @@ const useStyles = () => ({
     // 'justify-content': 'space-evenly',
     // 'align-items': 'center'
   },
+  button: {
+    marginTop: 20
+  }
 })
 
 const theme = createTheme({
@@ -247,7 +250,7 @@ class Itinerary extends React.Component {
                       <Link href={dinner[dNum].url}>
                         View on Yelp
                       </Link>
-                      <Typography gutterBottom variant="h6">>
+                      <Typography gutterBottom variant="h6">
                         Price: {dinner[dNum].price}
                       </Typography>
                     </CardContent>
@@ -263,9 +266,18 @@ class Itinerary extends React.Component {
                 </Card>
               </ThemeProvider>
             </Grid>
-            <Typography>
-              Not sold?
-            </Typography>
+            <center id='regenerate'>
+              <h1>Not sold?</h1>
+              <h3>Click the button below to receive a new itinerary!</h3>
+              <Button
+                variant='contained'
+                color='secondary'
+                className={classes.button}
+                onClick={() => window.location.reload()}
+                >
+                Try Again
+              </Button>
+            </center>
           </Grid>
         ) : <h1>Loading...</h1>}
       </div>

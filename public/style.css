@@ -30,8 +30,9 @@ form div {
   width: 100%;
 }
 
-/* .home-content {
-
-} */
+#regenerate {
+  font-style: italic;
+  margin: 105px
+}
 
 
