@@ -16,7 +16,7 @@ router.get('/morning/:zip', async (req, res, next) => {
       params: {
         location: req.params.zip,
         categories: 'artmuseums',
-        limit: 10,
+        limit: 30,
         radius: 30000
       }
     })
@@ -36,7 +36,7 @@ router.get('/afternoon/:zip', async (req, res, next) => {
       params: {
         location: req.params.zip,
         categories: 'fashion',
-        limit: 10,
+        limit: 30,
         radius: 30000
       }
     })
@@ -57,7 +57,7 @@ router.get('/lunch/:zip', async (req, res, next) => {
       params: {
         location: req.params.zip,
         categories: 'chinese',
-        limit: 10,
+        limit: 30,
         radius: 30000
       }
     })
@@ -79,7 +79,7 @@ router.get('/dinner/:zip', async (req, res, next) => {
       params: {
         location: req.params.zip,
         categories: 'newamerican',
-        limit: 10,
+        limit: 30,
         radius: 30000,
         // attributes: 'reservation'
       }
