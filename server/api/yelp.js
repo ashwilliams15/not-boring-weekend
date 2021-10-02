@@ -7,14 +7,14 @@ if (process.env.NODE_ENV !== 'production') require ('../../secrets');
 const URL = 'https://api.yelp.com/v3/businesses/search'
 
 //morning activity call to yelp fusion api
-router.get('/morning', async (req, res, next) => {
+router.get('/morning/:zip', async (req, res, next) => {
   try {
     const { data } = await axios.get(URL, {
       headers: {
         authorization: `Bearer ${process.env.YELP_API_KEY}`
       },
       params: {
-        location: 'Salt Lake City',
+        location: req.params.zip,
         categories: 'artmuseums',
         limit: 10,
         radius: 30000
@@ -27,14 +27,14 @@ router.get('/morning', async (req, res, next) => {
 })
 
 //afternoon activity call to yelp fusion api
-router.get('/afternoon', async (req, res, next) => {
+router.get('/afternoon/:zip', async (req, res, next) => {
   try {
     const { data } = await axios.get(URL, {
       headers: {
         authorization: `Bearer ${process.env.YELP_API_KEY}`
       },
       params: {
-        location: 'Salt Lake City',
+        location: req.params.zip,
         categories: 'fashion',
         limit: 10,
         radius: 30000
@@ -48,14 +48,14 @@ router.get('/afternoon', async (req, res, next) => {
 
 //lunch call to yelp fusion api
 
-router.get('/lunch', async (req, res, next) => {
+router.get('/lunch/:zip', async (req, res, next) => {
   try {
     const { data } = await axios.get(URL, {
       headers: {
         authorization: `Bearer ${process.env.YELP_API_KEY}`
       },
       params: {
-        location: 'Salt Lake City',
+        location: req.params.zip,
         categories: 'chinese',
         limit: 10,
         radius: 30000
@@ -70,14 +70,14 @@ router.get('/lunch', async (req, res, next) => {
 
 //dinner call to yelp fusion api
 
-router.get('/dinner', async (req, res, next) => {
+router.get('/dinner/:zip', async (req, res, next) => {
   try {
     const { data } = await axios.get(URL, {
       headers: {
         authorization: `Bearer ${process.env.YELP_API_KEY}`
       },
       params: {
-        location: 'Salt Lake City',
+        location: req.params.zip,
         categories: 'newamerican',
         limit: 10,
         radius: 30000,

@@ -1,42 +1,36 @@
 import axios from 'axios';
 
-//eventually these will take in params like categories
 
-//activities
-export const fetchMorning = async () => {
+export const fetchMorning = async (zip) => {
   try {
-    const { data } = await axios.get('/api/yelp/morning')
+    const { data } = await axios.get(`/api/yelp/morning/${zip}`)
     return data.businesses
   } catch (err) {
     console.log(err)
   }
 }
 
-//food
-export const fetchAfternoon = async () => {
+export const fetchAfternoon = async (zip) => {
   try {
-    const { data } = await axios.get('/api/yelp/afternoon')
+    const { data } = await axios.get(`/api/yelp/afternoon/${zip}`)
     return data.businesses
   } catch (err) {
     console.log(err)
   }
 }
 
-//lunch
-
-export const fetchLunch = async () => {
+export const fetchLunch = async (zip) => {
   try {
-    const { data } = await axios.get('/api/yelp/lunch')
+    const { data } = await axios.get(`/api/yelp/lunch/${zip}`)
     return data.businesses
   } catch (err) {
     console.log(err)
   }
 }
 
-//dinner
-export const fetchDinner = async () => {
+export const fetchDinner = async (zip) => {
   try {
-    const { data } = await axios.get('/api/yelp/dinner')
+    const { data } = await axios.get(`/api/yelp/dinner/${zip}`)
     return data.businesses
   } catch (err) {
     console.log(err)

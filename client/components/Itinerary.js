@@ -70,13 +70,13 @@ class Itinerary extends React.Component {
 
   async componentDidMount() {
     console.log('component did mount', this.props.zip)
-    const morningArr = await fetchMorning();
+    const morningArr = await fetchMorning(this.props.zip);
     console.log('Morning Array', morningArr)
-    const afternoonArr = await fetchAfternoon();
+    const afternoonArr = await fetchAfternoon(this.props.zip);
     console.log('Afternoon Array', afternoonArr)
-    const lunchArr = await fetchLunch();
+    const lunchArr = await fetchLunch(this.props.zip);
     console.log('Lunch Array', lunchArr)
-    const dinnerArr = await fetchDinner();
+    const dinnerArr = await fetchDinner(this.props.zip);
     console.log('Dinner Array', dinnerArr)
 
     this.setState({
