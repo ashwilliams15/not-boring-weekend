@@ -1,10 +1,13 @@
 import React from 'react'
 import { Box, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import logo from '../../public/full-logo.png'
 
 export const Home = props => {
 
   return (
+    <div>
+      <img src={logo} alt='logo' className='logo' />
     <div className='home-container'>
       <center className='home-content'>
       <h1>Sick of boring weekends? Let's plan your day off.</h1>
@@ -17,6 +20,7 @@ export const Home = props => {
         </Link>
       </Box>
       </center>
+    </div>
     </div>
   )
 }

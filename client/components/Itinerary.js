@@ -1,6 +1,8 @@
 import React from 'react';
 import { fetchMorning, fetchAfternoon, fetchLunch, fetchDinner } from '../store/yelp';
-import { Grid, Card, CardContent, Typography, withStyles, CardMedia, ThemeProvider, createTheme, Box, Link, Button } from '@material-ui/core'
+import { Grid, Card, CardContent, Typography, withStyles, CardMedia, ThemeProvider, createTheme, Box, Link, Button } from '@material-ui/core';
+import Rating from '@material-ui/lab/Rating';
+import Loading from './Loading';
 
 const useStyles = () => ({
   grid: {
@@ -44,7 +46,6 @@ const theme = createTheme({
   }
 })
 
-
 class Itinerary extends React.Component {
   constructor() {
     super()
@@ -82,13 +83,9 @@ class Itinerary extends React.Component {
     }
 
     const mNum = randomNum(this.state.morning.length)
-    console.log('mNum', mNum)
     const lNum = randomNum(this.state.lunch.length)
-    console.log('lNum', lNum)
     const aNum = randomNum(this.state.afternoon.length)
-    console.log('aNum', aNum)
     const dNum = randomNum(this.state.dinner.length)
-    console.log('dNum', dNum)
 
     this.setState({
       mNum: mNum,
@@ -98,8 +95,6 @@ class Itinerary extends React.Component {
     })
   }
 
-
-
   render() {
     const { classes } = this.props
     const { morning, afternoon, lunch, dinner, mNum, lNum, aNum, dNum } = this.state
@@ -107,9 +102,9 @@ class Itinerary extends React.Component {
     return (
       <div>
         {this.state.morning.length > 0 ? (
-          <Grid container justifyContent='center' direction='column' className={classes.grid}>
+          <Grid container justifyContent='center' direction='column' className={classes.grid} >
             <div>
-              <h1>Morning</h1>
+              <h1>Morning Activity</h1>
             </div>
             <Grid item>
               <ThemeProvider theme={theme}>
@@ -127,10 +122,8 @@ class Itinerary extends React.Component {
                       </Typography>
                     </CardContent>
                     <CardContent className={classes.rating}>
-                      <Typography gutterBottom variant="h6">
-                        Rating: {morning[mNum].rating} stars
-                      </Typography>
-                      <Link href={morning[mNum].url}>
+                      <Rating name='read-only' value={morning[mNum].rating} readOnly />
+                      <Link href={morning[mNum].url} target='_blank'>
                         View on Yelp
                       </Link>
                     </CardContent>
@@ -165,10 +158,8 @@ class Itinerary extends React.Component {
                       </Typography>
                     </CardContent>
                     <CardContent className={classes.rating}>
-                      <Typography gutterBottom variant="h6">
-                        Rating: {lunch[lNum].rating} stars
-                      </Typography>
-                      <Link href={lunch[lNum].url}>
+                      <Rating name='read-only' value={morning[mNum].rating} readOnly />
+                      <Link href={lunch[lNum].url} target='_blank'>
                         View on Yelp
                       </Link>
                       <Typography gutterBottom variant="h6">
@@ -188,7 +179,7 @@ class Itinerary extends React.Component {
               </ThemeProvider>
             </Grid>
             <div>
-              <h1>Afternoon</h1>
+              <h1>Afternoon Activity</h1>
             </div>
             <Grid item>
               <ThemeProvider theme={theme}>
@@ -206,10 +197,8 @@ class Itinerary extends React.Component {
                       </Typography>
                     </CardContent>
                     <CardContent className={classes.rating}>
-                      <Typography gutterBottom variant="h6">
-                        Rating: {afternoon[aNum].rating} stars
-                      </Typography>
-                      <Link href={afternoon[aNum].url}>
+                      <Rating name='read-only' value={morning[mNum].rating} readOnly />
+                      <Link href={afternoon[aNum].url} target='_blank'>
                         View on Yelp
                       </Link>
                     </CardContent>
@@ -244,10 +233,8 @@ class Itinerary extends React.Component {
                       </Typography>
                     </CardContent>
                     <CardContent className={classes.rating}>
-                      <Typography gutterBottom variant="h6">
-                        Rating: {dinner[dNum].rating} stars
-                      </Typography>
-                      <Link href={dinner[dNum].url}>
+                      <Rating name='read-only' value={morning[mNum].rating} readOnly />
+                      <Link href={dinner[dNum].url} target='_blank'>
                         View on Yelp
                       </Link>
                       <Typography gutterBottom variant="h6">
@@ -279,11 +266,10 @@ class Itinerary extends React.Component {
               </Button>
             </center>
           </Grid>
-        ) : <h1>Loading...</h1>}
+        ) : <Loading />}
       </div>
     )
   }
 }
-
 
 export default withStyles(useStyles)(Itinerary)

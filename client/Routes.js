@@ -7,12 +7,14 @@ import React from 'react';
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom';
 import Home from './components/Home';
 import Itinerary from './components/Itinerary';
+import Loading from './components/Loading';
 
 function Routes() {
   return (
     <Switch>
       <Route exact path='/' component={Home} />
       <Route path='/itinerary' component={Itinerary} />
+      {/* <Route path='/loading' component={Loading} /> */}
     </Switch>
   )
 }
