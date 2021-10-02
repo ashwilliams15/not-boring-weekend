@@ -31,6 +31,10 @@ form div {
   margin-top: 150px;
 }
 
+.info-container {
+  text-align: center;
+}
+
 #regenerate {
   font-style: italic;
   margin: 105px;

@@ -164,13 +164,13 @@ class Itinerary extends React.Component {
                       </Typography>
                     </CardContent>
                     <CardContent className={classes.rating}>
-                      <Rating name='read-only' value={morning[mNum].rating} readOnly />
-                      <Link href={lunch[lNum].url} target='_blank'>
-                        View on Yelp
-                      </Link>
+                      <Rating name='read-only' value={lunch[lNum].rating} readOnly />
                       <Typography gutterBottom variant="h6">
                         Price: {lunch[lNum].price}
                       </Typography>
+                      <Link href={lunch[lNum].url} target='_blank'>
+                        View on Yelp
+                      </Link>
                     </CardContent>
                     <CardContent className={classes.rating}>
                       <Typography gutterBottom variant="h6">
@@ -203,7 +203,7 @@ class Itinerary extends React.Component {
                       </Typography>
                     </CardContent>
                     <CardContent className={classes.rating}>
-                      <Rating name='read-only' value={morning[mNum].rating} readOnly />
+                      <Rating name='read-only' value={afternoon[aNum].rating} readOnly />
                       <Link href={afternoon[aNum].url} target='_blank'>
                         View on Yelp
                       </Link>
@@ -239,13 +239,13 @@ class Itinerary extends React.Component {
                       </Typography>
                     </CardContent>
                     <CardContent className={classes.rating}>
-                      <Rating name='read-only' value={morning[mNum].rating} readOnly />
-                      <Link href={dinner[dNum].url} target='_blank'>
-                        View on Yelp
-                      </Link>
+                      <Rating name='read-only' value={dinner[dNum].rating} readOnly />
                       <Typography gutterBottom variant="h6">
                         Price: {dinner[dNum].price}
                       </Typography>
+                      <Link href={dinner[dNum].url} target='_blank'>
+                        View on Yelp
+                      </Link>
                     </CardContent>
                     <CardContent className={classes.rating}>
                       <Typography gutterBottom variant="h6">

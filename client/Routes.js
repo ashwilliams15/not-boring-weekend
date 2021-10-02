@@ -8,6 +8,7 @@ import {withRouter, Route, Switch, Redirect} from 'react-router-dom';
 import Home from './components/Home';
 import Itinerary from './components/Itinerary';
 import Loading from './components/Loading';
+import Info from './components/Info';
 
 function Routes() {
   return (
@@ -15,6 +16,7 @@ function Routes() {
       <Route exact path='/' component={Home} />
       <Route path='/itinerary' component={Itinerary} />
       {/* <Route path='/loading' component={Loading} /> */}
+      <Route path='/info' component={Info} />
     </Switch>
   )
 }

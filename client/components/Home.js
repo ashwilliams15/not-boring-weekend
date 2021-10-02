@@ -11,11 +11,11 @@ export const Home = props => {
     <div className='home-container'>
       <center className='home-content'>
       <h1>Sick of boring weekends? Let's plan your day off.</h1>
-      <h3>Click the button below to generate your itinerary</h3>
+      <h3>Click the button below to get started</h3>
       <Box pt={3}>
-        <Link to='/itinerary'>
+        <Link to='/info'>
           <Button variant='contained' color='secondary'>
-            Generate
+            Let's plan
           </Button>
         </Link>
       </Box>
