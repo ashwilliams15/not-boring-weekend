@@ -33,9 +33,7 @@ export const fetchLunch = async () => {
   }
 }
 
-
 //dinner
-
 export const fetchDinner = async () => {
   try {
     const { data } = await axios.get('/api/yelp/dinner')
@@ -44,4 +42,5 @@ export const fetchDinner = async () => {
     console.log(err)
   }
 }
+
 

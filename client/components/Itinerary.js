@@ -3,6 +3,7 @@ import { fetchMorning, fetchAfternoon, fetchLunch, fetchDinner } from '../store/
 import { Grid, Card, CardContent, Typography, withStyles, CardMedia, ThemeProvider, createTheme, Box, Link, Button } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 import Loading from './Loading';
+import { connect } from 'react-redux';
 
 const useStyles = () => ({
   grid: {
@@ -53,8 +54,8 @@ const theme = createTheme({
 })
 
 class Itinerary extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = ({
       morning: [],
       mNum: 0,
@@ -68,6 +69,7 @@ class Itinerary extends React.Component {
   }
 
   async componentDidMount() {
+    console.log('component did mount', this.props.zip)
     const morningArr = await fetchMorning();
     console.log('Morning Array', morningArr)
     const afternoonArr = await fetchAfternoon();
@@ -278,4 +280,10 @@ class Itinerary extends React.Component {
   }
 }
 
-export default withStyles(useStyles)(Itinerary)
+const mapState = (state) => {
+  return {
+    zip: state.zip
+  }
+}
+
+export default connect(mapState)(withStyles(useStyles)(Itinerary))
