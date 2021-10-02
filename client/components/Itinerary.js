@@ -22,18 +22,24 @@ const useStyles = () => ({
     display: 'flex',
     flex: 1,
     'flex-direction': 'column',
-    'align-items': 'center'
+    'align-items': 'center',
   },
   name: {
     paddingTop: 25,
     'align-items': 'center'
   },
   rating: {
-    paddingTop: 5,
     display: 'flex',
     'flex-direction': 'row',
-    // 'justify-content': 'space-evenly',
-    // 'align-items': 'center'
+    justifyContent: 'space-around',
+    width: '100%',
+    '&:last-child': {
+      paddingBottom: 0
+    }
+  },
+  elements: {
+    paddingLeft: 15,
+    paddingRight: 15
   },
   button: {
     marginTop: 20
@@ -122,16 +128,16 @@ class Itinerary extends React.Component {
                       </Typography>
                     </CardContent>
                     <CardContent className={classes.rating}>
-                      <Rating name='read-only' value={morning[mNum].rating} readOnly />
-                      <Link href={morning[mNum].url} target='_blank'>
+                      <Rating name='read-only' value={morning[mNum].rating} readOnly className={classes.elements}/>
+                      <Link href={morning[mNum].url} target='_blank' className={classes.elements}>
                         View on Yelp
                       </Link>
                     </CardContent>
                     <CardContent className={classes.rating}>
-                      <Typography gutterBottom variant="h6">
+                      <Typography gutterBottom variant="h6" className={classes.elements}>
                         Address: {morning[mNum].location.display_address.join(', ')}
                       </Typography>
-                      <Typography gutterBottom variant='h6'>
+                      <Typography gutterBottom variant='h6' className={classes.elements}>
                         Phone Number: {morning[mNum].display_phone}
                       </Typography>
                     </CardContent>
