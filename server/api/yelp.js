@@ -6,8 +6,8 @@ if (process.env.NODE_ENV !== 'production') require ('../../secrets');
 
 const URL = 'https://api.yelp.com/v3/businesses/search'
 
-//morning activity call to yelp fusion api
-router.get('/morning/:zip', async (req, res, next) => {
+
+router.get('/morning/:zip&:activity', async (req, res, next) => {
   try {
     const { data } = await axios.get(URL, {
       headers: {
@@ -15,7 +15,7 @@ router.get('/morning/:zip', async (req, res, next) => {
       },
       params: {
         location: req.params.zip,
-        categories: 'artmuseums',
+        categories: req.params.activity,
         limit: 30,
         radius: 30000
       }
@@ -26,8 +26,7 @@ router.get('/morning/:zip', async (req, res, next) => {
   }
 })
 
-//afternoon activity call to yelp fusion api
-router.get('/afternoon/:zip', async (req, res, next) => {
+router.get('/afternoon/:zip&:activity', async (req, res, next) => {
   try {
     const { data } = await axios.get(URL, {
       headers: {
@@ -35,7 +34,7 @@ router.get('/afternoon/:zip', async (req, res, next) => {
       },
       params: {
         location: req.params.zip,
-        categories: 'fashion',
+        categories: req.params.activity,
         limit: 30,
         radius: 30000
       }
@@ -46,9 +45,7 @@ router.get('/afternoon/:zip', async (req, res, next) => {
   }
 })
 
-//lunch call to yelp fusion api
-
-router.get('/lunch/:zip', async (req, res, next) => {
+router.get('/lunch/:zip&:food', async (req, res, next) => {
   try {
     const { data } = await axios.get(URL, {
       headers: {
@@ -56,7 +53,7 @@ router.get('/lunch/:zip', async (req, res, next) => {
       },
       params: {
         location: req.params.zip,
-        categories: 'chinese',
+        categories: req.params.food,
         limit: 30,
         radius: 30000
       }
@@ -67,10 +64,7 @@ router.get('/lunch/:zip', async (req, res, next) => {
   }
 })
 
-
-//dinner call to yelp fusion api
-
-router.get('/dinner/:zip', async (req, res, next) => {
+router.get('/dinner/:zip&:food', async (req, res, next) => {
   try {
     const { data } = await axios.get(URL, {
       headers: {
@@ -78,7 +72,7 @@ router.get('/dinner/:zip', async (req, res, next) => {
       },
       params: {
         location: req.params.zip,
-        categories: 'newamerican',
+        categories: req.params.food,
         limit: 30,
         radius: 30000,
         // attributes: 'reservation'
