@@ -4,6 +4,7 @@ import { Grid, Card, CardContent, Typography, withStyles, CardMedia, ThemeProvid
 import Rating from '@material-ui/lab/Rating';
 import Loading from './Loading';
 import { connect } from 'react-redux';
+import logo from '../../public/full-logo.png'
 
 const useStyles = () => ({
   grid: {
@@ -104,6 +105,9 @@ class Itinerary extends React.Component {
 
     return (
       <div>
+        <a href='/'>
+        <img src={logo} alt='logo' className='logo' />
+        </a>
         {this.state.morning.length > 0 ? (
           <Grid container justifyContent='center' direction='column' className={classes.grid} >
             <div>

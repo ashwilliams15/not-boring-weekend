@@ -117,7 +117,9 @@ class Info extends React.Component {
 
     return (
       <div>
-        <img src={logo} alt='logo' className='logo' />
+        <a href='/'>
+          <img src={logo} alt='logo' className='logo' />
+        </a>
         <div className='info-container'>
           <Container className={classes.container}>
             <h1>Select all activities that peak your interest</h1>
