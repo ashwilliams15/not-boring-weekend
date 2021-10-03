@@ -8,6 +8,7 @@ import thunkMiddleware from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 // import auth from './auth';
 import zip from './zip';
+import activities from './activities';
 
 const persistConfig = {
   key: 'root',
@@ -15,7 +16,7 @@ const persistConfig = {
   stateReconciler: autoMergeLevel2
 }
 
-const pReducer = persistReducer(persistConfig, combineReducers({ zip }))
+const pReducer = persistReducer(persistConfig, combineReducers({ zip, activities }))
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

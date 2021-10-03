@@ -3,6 +3,7 @@ import logo from '../../public/full-logo.png'
 import { TextField, Box, Button, withStyles, Container, FormControl, FormGroup, Checkbox, FormControlLabel } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { setZip } from '../store/zip';
+import { setActivities } from '../store/activities';
 
 const useStyles = () => ({
   container: {
@@ -104,8 +105,11 @@ class Info extends React.Component {
   async handleSubmit() {
     // await thunk that will update redux store with categories
     // need to send all categories to redux store
-
+    const checkedActivities = this.state.activities.filter(activity => activity.isChecked === true)
+    console.log('checked activities', checkedActivities)
+    await this.props.setActivities(checkedActivities)
     await this.props.setZip(this.state.zip)
+    // await this.props.setActivities(this.state.)
     this.props.history.push('/itinerary')
   }
 
@@ -342,7 +346,8 @@ class Info extends React.Component {
 
 const mapDispatch = (dispatch) => {
   return {
-    setZip: (zip) => dispatch(setZip(zip))
+    setZip: (zip) => dispatch(setZip(zip)),
+    setActivities: (activities) => dispatch(setActivities(activities))
   }
 }
 
