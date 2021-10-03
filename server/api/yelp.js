@@ -55,7 +55,8 @@ router.get('/lunch/:zip&:food', async (req, res, next) => {
         location: req.params.zip,
         categories: req.params.food,
         limit: 30,
-        radius: 30000
+        radius: 30000,
+        price: '1, 2'
       }
     })
     res.json(data)
@@ -75,7 +76,7 @@ router.get('/dinner/:zip&:food', async (req, res, next) => {
         categories: req.params.food,
         limit: 30,
         radius: 30000,
-        // attributes: 'reservation'
+        price: '2, 3, 4'
       }
     })
     res.json(data)
