@@ -4,6 +4,7 @@ import { TextField, Box, Button, withStyles, Container, FormControl, FormGroup, 
 import { connect } from 'react-redux';
 import { setZip } from '../store/zip';
 import { setActivities } from '../store/activities';
+import { setFood } from '../store/food';
 
 const useStyles = () => ({
   container: {
@@ -87,7 +88,6 @@ class Info extends React.Component {
        activity.isChecked = event.target.checked
      }
    })
-   console.log('activities', activities)
    this.setState({activities: activities})
   }
 
@@ -98,25 +98,22 @@ class Info extends React.Component {
         food.isChecked = event.target.checked
       }
     })
-    console.log('food', food)
     this.setState({food: food})
   }
 
   async handleSubmit() {
-    // await thunk that will update redux store with categories
-    // need to send all categories to redux store
     const checkedActivities = this.state.activities.filter(activity => activity.isChecked === true)
-    console.log('checked activities', checkedActivities)
+    const checkedFood = this.state.food.filter(food => food.isChecked === true)
+
     await this.props.setActivities(checkedActivities)
+    await this.props.setFood(checkedFood)
     await this.props.setZip(this.state.zip)
-    // await this.props.setActivities(this.state.)
+
     this.props.history.push('/itinerary')
   }
 
   render() {
     const { classes } = this.props
-    console.log('zip state', this.state.zip)
-    // console.log('activities state', this.state.activities)
 
     return (
       <div>
@@ -347,7 +344,8 @@ class Info extends React.Component {
 const mapDispatch = (dispatch) => {
   return {
     setZip: (zip) => dispatch(setZip(zip)),
-    setActivities: (activities) => dispatch(setActivities(activities))
+    setActivities: (activities) => dispatch(setActivities(activities)),
+    setFood: (food) => dispatch(setFood(food))
   }
 }
 

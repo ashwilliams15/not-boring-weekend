@@ -9,6 +9,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 // import auth from './auth';
 import zip from './zip';
 import activities from './activities';
+import food from './food';
 
 const persistConfig = {
   key: 'root',
@@ -16,7 +17,7 @@ const persistConfig = {
   stateReconciler: autoMergeLevel2
 }
 
-const pReducer = persistReducer(persistConfig, combineReducers({ zip, activities }))
+const pReducer = persistReducer(persistConfig, combineReducers({ zip, activities, food }))
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
