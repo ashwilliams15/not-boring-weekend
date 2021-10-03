@@ -40,6 +40,7 @@ class Info extends React.Component {
     super()
     this.state = {
       zip: '',
+      zipError: false,
       activities: [
         {id: 1, name: 'Biking', yelpName: 'bikerentals', isChecked: false},
         {id: 2, name: 'Bowling', yelpName: 'bowling', isChecked: false},
@@ -75,6 +76,7 @@ class Info extends React.Component {
     this.handleFoodChange = this.handleFoodChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
+
   handleZipChange(event) {
     this.setState({
       [event.target.name]: event.target.value
@@ -105,16 +107,26 @@ class Info extends React.Component {
     const checkedActivities = this.state.activities.filter(activity => activity.isChecked === true)
     const checkedFood = this.state.food.filter(food => food.isChecked === true)
 
+    if (this.state.zip.length !== 5) {
+      this.setState({
+        zipError: true
+      })
+      return
+    }
+
     await this.props.setActivities(checkedActivities)
     await this.props.setFood(checkedFood)
     await this.props.setZip(this.state.zip)
-
-    this.props.history.push('/itinerary')
+    if (checkedActivities.length > 0 && checkedFood.length > 0) {
+      this.props.history.push('/itinerary')
+    } else {
+      alert('Please select at least one activity and one food category')
+    }
   }
 
   render() {
     const { classes } = this.props
-
+    console.log(this.state.zipError)
     return (
       <div>
         <a href='/'>
@@ -326,6 +338,8 @@ class Info extends React.Component {
               value={this.state.zip}
               onChange={this.handleZipChange}
               className={classes.zip}
+              error={this.state.zipError}
+              // errorText='Please enter a valid zip code'
             />
             </Container>
             <Button
