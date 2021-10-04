@@ -132,8 +132,9 @@ class Info extends React.Component {
     await this.props.setLunch(lunch)
     await this.props.setDinner(dinner)
     await this.props.setZip(this.state.zip)
-
-    this.props.history.push('/itinerary')
+    if (checkedActivities.length > 1 && checkedFood.length > 1) {
+      this.props.history.push('/itinerary')
+    }
   }
 
   render() {
