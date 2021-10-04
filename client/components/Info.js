@@ -3,8 +3,10 @@ import logo from '../../public/full-logo.png'
 import { TextField, Box, Button, withStyles, Container, FormControl, FormGroup, Checkbox, FormControlLabel } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { setZip } from '../store/zip';
-import { setActivities } from '../store/activities';
-import { setFood } from '../store/food';
+import { setMorning } from '../store/morning';
+import { setAfternoon } from '../store/afternoon';
+import { setLunch } from '../store/lunch';
+import { setDinner } from '../store/dinner';
 
 const useStyles = () => ({
   container: {
@@ -44,13 +46,12 @@ class Info extends React.Component {
       activities: [
         {id: 1, name: 'Biking', yelpName: 'bikerentals', isChecked: false},
         {id: 2, name: 'Bowling', yelpName: 'bowling', isChecked: false},
-        {id: 3, name: 'Golf', yelpName: 'golf', isChecked: false},
-        {id: 4, name: 'Yoga', yelpName: 'yoga', isChecked: false},
-        {id: 5, name: 'Arcades', yelpName: 'arcades', isChecked: false},
-        {id: 6, name: 'Art Galleries', yelpName: 'galleries', isChecked: false},
-        {id: 7, name: 'Art Museums', yelpName: 'artmuseums', isChecked: false},
-        {id: 8, name: 'Day Spas', yelpName: 'spas', isChecked: false},
-        {id: 9, name: 'Shopping', yelpName: 'shoppingcenters', isChecked: false}
+        {id: 3, name: 'Yoga', yelpName: 'yoga', isChecked: false},
+        {id: 4, name: 'Arcades', yelpName: 'arcades', isChecked: false},
+        {id: 5, name: 'Art Galleries', yelpName: 'galleries', isChecked: false},
+        {id: 6, name: 'Art Museums', yelpName: 'artmuseums', isChecked: false},
+        {id: 7, name: 'Day Spas', yelpName: 'spas', isChecked: false},
+        {id: 8, name: 'Shopping', yelpName: 'shoppingcenters', isChecked: false}
       ],
       food: [
         {id: 1, name: 'American', yelpName: 'newamerican', isChecked: false},
@@ -107,6 +108,18 @@ class Info extends React.Component {
     const checkedActivities = this.state.activities.filter(activity => activity.isChecked === true)
     const checkedFood = this.state.food.filter(food => food.isChecked === true)
 
+    if (checkedActivities.length < 2 || checkedFood.length < 2) {
+      alert('Please select at least two activities and two food categories')
+    }
+
+    const aHalf = Math.floor(checkedActivities.length / 2)
+    const morning = checkedActivities.slice(0, aHalf)
+    const afternoon = checkedActivities.slice(aHalf)
+
+    const fHalf = Math.floor(checkedFood.length / 2)
+    const lunch = checkedFood.slice(0, fHalf)
+    const dinner = checkedFood.slice(fHalf)
+
     if (this.state.zip.length !== 5) {
       this.setState({
         zipError: true
@@ -114,19 +127,17 @@ class Info extends React.Component {
       return
     }
 
-    await this.props.setActivities(checkedActivities)
-    await this.props.setFood(checkedFood)
+    await this.props.setMorning(morning)
+    await this.props.setAfternoon(afternoon)
+    await this.props.setLunch(lunch)
+    await this.props.setDinner(dinner)
     await this.props.setZip(this.state.zip)
-    if (checkedActivities.length > 0 && checkedFood.length > 0) {
-      this.props.history.push('/itinerary')
-    } else {
-      alert('Please select at least one activity and one food category')
-    }
+
+    this.props.history.push('/itinerary')
   }
 
   render() {
     const { classes } = this.props
-    console.log(this.state.zipError)
     return (
       <div>
         <a href='/'>
@@ -155,48 +166,41 @@ class Info extends React.Component {
                   <FormControlLabel
                     control={
                       <Checkbox checked={this.state.activities[2].isChecked}
-                      onChange={this.handleActChange} name='Golf'/>
-                    }
-                    label='Golf'
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox checked={this.state.activities[3].isChecked}
                       onChange={this.handleActChange} name='Yoga'/>
                     }
                     label='Yoga'
                   />
                   <FormControlLabel
                     control={
-                      <Checkbox checked={this.state.activities[4].isChecked}
+                      <Checkbox checked={this.state.activities[3].isChecked}
                       onChange={this.handleActChange} name='Arcades'/>
                     }
                     label='Arcades'
                   />
                   <FormControlLabel
                     control={
-                      <Checkbox checked={this.state.activities[5].isChecked}
+                      <Checkbox checked={this.state.activities[4].isChecked}
                       onChange={this.handleActChange} name='Art Galleries'/>
                     }
                     label='Art Galleries'
                   />
                   <FormControlLabel
                     control={
-                      <Checkbox checked={this.state.activities[6].isChecked}
+                      <Checkbox checked={this.state.activities[5].isChecked}
                       onChange={this.handleActChange} name='Art Museums'/>
                     }
                     label='Art Museums'
                   />
                   <FormControlLabel
                     control={
-                      <Checkbox checked={this.state.activities[7].isChecked}
+                      <Checkbox checked={this.state.activities[6].isChecked}
                       onChange={this.handleActChange} name='Day Spas'/>
                     }
                     label='Day Spas'
                   />
                   <FormControlLabel
                     control={
-                      <Checkbox checked={this.state.activities[8].isChecked}
+                      <Checkbox checked={this.state.activities[7].isChecked}
                       onChange={this.handleActChange} name='Shopping'/>
                     }
                     label='Shopping'
@@ -360,8 +364,10 @@ class Info extends React.Component {
 const mapDispatch = (dispatch) => {
   return {
     setZip: (zip) => dispatch(setZip(zip)),
-    setActivities: (activities) => dispatch(setActivities(activities)),
-    setFood: (food) => dispatch(setFood(food))
+    setMorning: (morning) => dispatch(setMorning(morning)),
+    setAfternoon: (afternoon) => dispatch(setAfternoon(afternoon)),
+    setLunch: (lunch) => dispatch(setLunch(lunch)),
+    setDinner: (dinner) => dispatch(setDinner(dinner))
   }
 }
 

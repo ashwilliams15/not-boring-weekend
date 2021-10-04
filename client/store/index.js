@@ -8,8 +8,10 @@ import thunkMiddleware from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 // import auth from './auth';
 import zip from './zip';
-import activities from './activities';
-import food from './food';
+import morning from './morning';
+import afternoon from './afternoon';
+import lunch from './lunch';
+import dinner from './dinner';
 
 const persistConfig = {
   key: 'root',
@@ -17,7 +19,7 @@ const persistConfig = {
   stateReconciler: autoMergeLevel2
 }
 
-const pReducer = persistReducer(persistConfig, combineReducers({ zip, activities, food }))
+const pReducer = persistReducer(persistConfig, combineReducers({ zip, morning, afternoon, lunch, dinner }))
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

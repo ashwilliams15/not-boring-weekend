@@ -70,10 +70,10 @@ class Itinerary extends React.Component {
   }
 
   async componentDidMount() {
-    const morningArr = await fetchMorning(this.props.zip, this.props.activities);
-    const afternoonArr = await fetchAfternoon(this.props.zip, this.props.activities);
-    const lunchArr = await fetchLunch(this.props.zip, this.props.food);
-    const dinnerArr = await fetchDinner(this.props.zip, this.props.food);
+    const morningArr = await fetchMorning(this.props.zip, this.props.morning);
+    const afternoonArr = await fetchAfternoon(this.props.zip, this.props.afternoon);
+    const lunchArr = await fetchLunch(this.props.zip, this.props.lunch);
+    const dinnerArr = await fetchDinner(this.props.zip, this.props.dinner);
 
     this.setState({
       morning: morningArr,
@@ -282,8 +282,10 @@ class Itinerary extends React.Component {
 const mapState = (state) => {
   return {
     zip: state.zip,
-    activities: state.activities,
-    food: state.food
+    morning: state.morning,
+    afternoon: state.afternoon,
+    lunch: state.lunch,
+    dinner: state.dinner
   }
 }
 
