@@ -344,7 +344,6 @@ class Info extends React.Component {
               onChange={this.handleZipChange}
               className={classes.zip}
               error={this.state.zipError}
-              // errorText='Please enter a valid zip code'
             />
             </Container>
             <Button
